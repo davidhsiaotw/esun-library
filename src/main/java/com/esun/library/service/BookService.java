@@ -22,5 +22,11 @@ public interface BookService {
      */
     List<BookDTOHome> findBookDTOsHomeByName(String name);
 
-    List<BookDTOHome> findBookDtosHomeByName(String name);
+    /**
+     * @param isbn The ISBN of the book.
+     * @return A list of books that can be checked out.
+     */
+    List<BookDTOCheckout> findBookDTOsCheckoutByIsbn(String isbn);
+
+    void checkout(Long userId, Long bookId);
 }

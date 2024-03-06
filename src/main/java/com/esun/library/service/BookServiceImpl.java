@@ -40,4 +40,28 @@ public class BookServiceImpl implements BookService {
                 }
         ).toList();
     }
+
+    @Override
+    public List<BookDTOCheckout> findBookDTOsCheckoutByIsbn(String isbn) {
+        List<Book> books = bookRepository.findByInventoryAndStatus(new Inventory(Long.parseLong(isbn), 0), BookStatus.CHECKIN);
+        return books.stream().map(BookMapper::toBookDTOCheckout).toList();
+    }
+
+    @Override
+    public void checkout(Long userId, Long bookId) {
+        Book book = bookRepository.findById(bookId).orElseThrow();
+        User user = new User(userId, null, null, null);
+
+        if (book.getStatus() == BookStatus.CHECKOUT) {
+            throw new RuntimeException("The book is already checked out");
+        }
+
+        // change the status to check-out
+        book.setStatus(BookStatus.CHECKOUT);
+        // minus the quantity of the inventory
+        book.getInventory().setQuantity(book.getInventory().getQuantity() - 1);
+        // add a new record
+        Record record = new Record(user, book, LocalDateTime.now(), null);
+        recordRepository.save(record);
+    }
 }
