@@ -1,11 +1,26 @@
 package com.esun.library.service;
 
+import com.esun.library.common.dto.BookDTOCheckout;
 import com.esun.library.common.dto.BookDTOHome;
 
 import java.util.List;
 
 public interface BookService {
-    List<BookDTOHome> findBookDtosHomeByIsbn(String isbn);
+    /**
+     * Find books and their quantity in the inventory.
+     *
+     * @param isbn The ISBN of the book.
+     * @return A list of books.
+     */
+    List<BookDTOHome> findBookDTOsHomeByIsbn(String isbn);
+
+    /**
+     * Find books and their quantity in the inventory.
+     *
+     * @param name The name of the book.
+     * @return A list of books.
+     */
+    List<BookDTOHome> findBookDTOsHomeByName(String name);
 
     List<BookDTOHome> findBookDtosHomeByName(String name);
 }

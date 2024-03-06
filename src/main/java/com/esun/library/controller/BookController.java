@@ -23,9 +23,9 @@ public class BookController {
         try {
             List<BookDTOHome> books;
             if (name == null) {
-                books = bookService.findBookDtosHomeByName("");
+                books = bookService.findBookDTOsHomeByName("");
             } else {
-                books = bookService.findBookDtosHomeByName(name);
+                books = bookService.findBookDTOsHomeByName(name);
             }
             return new ResponseEntity<>(books, HttpStatus.CREATED);
         } catch (Exception e) {
