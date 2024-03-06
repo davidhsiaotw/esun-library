@@ -28,4 +28,11 @@ public class Record {
 
     private LocalDateTime checkOutTime;
     private LocalDateTime checkInTime;
+
+    public Record(User user, Book book, LocalDateTime checkOutTime, LocalDateTime checkInTime) {
+        this.user = user;
+        this.book = book;
+        this.checkOutTime = checkOutTime;
+        this.checkInTime = checkInTime;
+    }
 }
