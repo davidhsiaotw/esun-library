@@ -1,6 +1,6 @@
 package com.esun.library.service;
 
-import com.esun.library.service.dto.BookDTOHome;
+import com.esun.library.common.dto.BookDTOHome;
 
 import java.util.List;
 

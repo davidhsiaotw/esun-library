@@ -2,7 +2,7 @@ package com.esun.library.service.mapper;
 
 import com.esun.library.repository.entity.Book;
 import com.esun.library.repository.entity.Inventory;
-import com.esun.library.service.dto.BookDTOHome;
+import com.esun.library.common.dto.BookDTOHome;
 
 public class BookMapper {
     public static BookDTOHome toBookDTOHome(Book book) {

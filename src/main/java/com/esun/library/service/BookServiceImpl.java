@@ -3,7 +3,7 @@ package com.esun.library.service;
 import com.esun.library.repository.BookRepository;
 import com.esun.library.repository.entity.Book;
 import com.esun.library.repository.entity.Inventory;
-import com.esun.library.service.dto.BookDTOHome;
+import com.esun.library.common.dto.BookDTOHome;
 import com.esun.library.service.mapper.BookMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

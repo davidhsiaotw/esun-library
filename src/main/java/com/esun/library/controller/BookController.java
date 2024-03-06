@@ -1,7 +1,7 @@
 package com.esun.library.controller;
 
 import com.esun.library.service.BookService;
-import com.esun.library.service.dto.BookDTOHome;
+import com.esun.library.common.dto.BookDTOHome;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

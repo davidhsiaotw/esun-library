@@ -1,4 +1,4 @@
-package com.esun.library.service.dto;
+package com.esun.library.common.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
