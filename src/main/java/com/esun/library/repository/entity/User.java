@@ -14,8 +14,14 @@ import lombok.*;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private @NonNull Long id;
-    private @NonNull String phone;
-    private @NonNull String password;
-    private @NonNull String name;
+    private Long id;
+    private String phone;
+    private String password;
+    private String name;
+
+    public User(String phone, String password, String name) {
+        this.phone = phone;
+        this.password = password;
+        this.name = name;
+    }
 }

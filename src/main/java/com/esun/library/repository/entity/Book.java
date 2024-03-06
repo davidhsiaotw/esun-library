@@ -1,10 +1,7 @@
 package com.esun.library.repository.entity;
 
 import com.esun.library.common.BookStatus;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -14,11 +11,17 @@ import lombok.*;
 @Setter
 public class Book {
     @Id
-    private @NonNull Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "isbn", referencedColumnName = "isbn")
-    private @NonNull Inventory inventory;
+    private Inventory inventory;
     private String name;
     private BookStatus status = BookStatus.CHECKIN;
+
+    public Book(Inventory inventory, String name) {
+        this.inventory = inventory;
+        this.name = name;
+    }
 }
