@@ -1,5 +1,6 @@
 package com.esun.library.controller;
 
+import com.esun.library.common.dto.BookDTOCheckin;
 import com.esun.library.common.dto.BookDTOCheckout;
 import com.esun.library.service.BookService;
 import com.esun.library.common.dto.BookDTOHome;
@@ -33,7 +34,7 @@ public class BookController {
     }
 
     @GetMapping("checkout/get/{isbn}")
-    public ResponseEntity<List<BookDTOCheckout>> getBooksByIsbn(@PathVariable String isbn) {
+    public ResponseEntity<List<BookDTOCheckout>> getBooksToCheckoutByIsbn(@PathVariable String isbn) {
         try {
             List<BookDTOCheckout> books = bookService.findBookDTOsCheckoutByIsbn(isbn);
             return new ResponseEntity<>(books, HttpStatus.CREATED);
@@ -49,6 +50,29 @@ public class BookController {
         try {
             bookService.checkout(userId, bookId);
             return new ResponseEntity<>("Checkout successfully", HttpStatus.CREATED);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("checkin/get/{userId}")
+    public ResponseEntity<List<BookDTOCheckin>> getBooksToCheckin(@PathVariable Long userId) {
+        try {
+            List<BookDTOCheckin> books = bookService.findBookDTOsCheckin(userId);
+            return new ResponseEntity<>(books, HttpStatus.CREATED);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("checkin")
+    public ResponseEntity<String> checkin(@RequestParam(name = "userId") Long userId,
+                                          @RequestParam(name = "bookId") Long bookId) {
+        try {
+            bookService.checkin(userId, bookId);
+            return new ResponseEntity<>("Checkin successfully", HttpStatus.CREATED);
         } catch (Exception e) {
             System.err.println(e.getMessage());
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

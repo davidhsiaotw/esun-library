@@ -1,6 +1,7 @@
 package com.esun.library.service;
 
 import com.esun.library.common.BookStatus;
+import com.esun.library.common.dto.BookDTOCheckin;
 import com.esun.library.common.dto.BookDTOCheckout;
 import com.esun.library.repository.BookRepository;
 import com.esun.library.repository.RecordRepository;
@@ -62,6 +63,31 @@ public class BookServiceImpl implements BookService {
         book.getInventory().setQuantity(book.getInventory().getQuantity() - 1);
         // add a new record
         Record record = new Record(user, book, LocalDateTime.now(), null);
+        recordRepository.save(record);
+    }
+
+    @Override
+    public List<BookDTOCheckin> findBookDTOsCheckin(Long userId) {
+        List<Record> records = recordRepository.findByUserAndCheckInTimeNull(new User(userId, null, null, null));
+        return records.stream().map(BookMapper::toBookDTOCheckin).toList();
+    }
+
+    @Override
+    public void checkin(Long userId, Long bookId) {
+        Book book = new Book(bookId, null, null, null);
+        User user = new User(userId, null, null, null);
+
+        // find the record by user and book, and its check-in time is not null
+        Record record = recordRepository.findByUserAndBookAndCheckInTimeNull(user, book);
+        if (record == null) throw new RuntimeException("Record not found or the book is not checked out yet.");
+        // update the check-in time
+        record.setCheckInTime(LocalDateTime.now());
+        // change the status to check-in
+        book = record.getBook();
+        book.setStatus(BookStatus.CHECKIN);
+        // add the quantity of the inventory
+        book.getInventory().setQuantity(book.getInventory().getQuantity() + 1);
+        // save the record
         recordRepository.save(record);
     }
 }

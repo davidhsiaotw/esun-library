@@ -1,5 +1,6 @@
 package com.esun.library.service;
 
+import com.esun.library.common.dto.BookDTOCheckin;
 import com.esun.library.common.dto.BookDTOCheckout;
 import com.esun.library.common.dto.BookDTOHome;
 
@@ -29,4 +30,8 @@ public interface BookService {
     List<BookDTOCheckout> findBookDTOsCheckoutByIsbn(String isbn);
 
     void checkout(Long userId, Long bookId);
+
+    List<BookDTOCheckin> findBookDTOsCheckin(Long userId);
+
+    void checkin(Long userId, Long bookId);
 }
