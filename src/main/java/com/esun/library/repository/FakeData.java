@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class FakeData {
-    private static final FakeData INSTANCE = new FakeData();
+public enum FakeData {
+    INSTANCE;
 
-    private FakeData() {
+    public void initialize() {
         Map<Long, Integer> inventories = Map.of(
                 9780330523622L, 5,
                 9780330523623L, 2,
@@ -28,13 +28,9 @@ public class FakeData {
             Inventory inventory = new Inventory(isbn, quantity);
             this.inventories.add(inventory);
             for (int i = 0; i < quantity; i++) {
-                books.add(new Book(inventory, "Book " + isbn + "-" + i));
+                books.add(new Book(inventory, "Book " + isbn));
             }
         });
-    }
-
-    public static FakeData getInstance() {
-        return INSTANCE;
     }
 
     public final List<User> users = List.of(
