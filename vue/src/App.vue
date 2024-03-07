@@ -1,14 +1,11 @@
 <template>
-  <div class="hello">
-    <LibraryLogin/>
-  </div>
+  <LibraryLogin />
 </template>
 
 <script>
 import LibraryLogin from './components/LibraryLogin.vue'
 
 export default {
-  name: 'App',
   components: {
     LibraryLogin
   }

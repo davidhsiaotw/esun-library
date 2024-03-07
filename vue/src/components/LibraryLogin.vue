@@ -12,6 +12,8 @@
       <a href="https://www.w3schools.com/">Register</a><br />
 
       <button type="submit" @click="login">Login</button>
+
+      <p v-if="message" class="message">{{ message }}</p>
     </ul>
   </div>
 </template>
@@ -19,12 +21,13 @@
 <script>
 import axios from 'axios';
 
+
 export default {
-  name: 'LibraryHome',
   data() {
     return {
       phone: "",
-      password: ""
+      password: "",
+      message: ""
     }
   },
   methods: {
@@ -37,11 +40,10 @@ export default {
         phone: this.phone,
         password: this.password
       }).then(() => {
-        // TODO: navigate to Home
-        console.log("Login Successfully")
+        this.message = "Login Successfully"
+        this.$router.push('home')
       }).catch(() => {
-        // TODO: show log in fail
-        console.log("Login Failed");
+        this.message = "Login Failed"
       })
     }
   }

@@ -41,3 +41,19 @@ build/
 
 ### VS Code ###
 .vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+### Vue.js ###
+# local env files
+/vue/env.local
+/vue/env.*.local
+
+# Log files
+/vue/npm-debug.log*
+/vue/yarn-debug.log*
+/vue/yarn-error.log*
+/vue/pnpm-debug.log*
