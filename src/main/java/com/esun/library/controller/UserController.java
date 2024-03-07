@@ -7,8 +7,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * @see <a href="https://www.cnblogs.com/mmzs/p/9167743.html">解決跨域問題</a>
+ */
 @AllArgsConstructor
 @RestController
+@CrossOrigin(origins = "http://localhost:8086", maxAge = 3600)
 @RequestMapping("/api/users")
 public class UserController {
     private UserService userService;
