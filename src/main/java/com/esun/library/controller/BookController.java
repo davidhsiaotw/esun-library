@@ -26,7 +26,7 @@ public class BookController {
             } else {
                 books = bookService.findBookDTOsHomeByName(name);
             }
-            return new ResponseEntity<>(books, HttpStatus.CREATED);
+            return new ResponseEntity<>(books, HttpStatus.OK);
         } catch (Exception e) {
             System.err.println(e.getMessage());
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -37,7 +37,7 @@ public class BookController {
     public ResponseEntity<List<BookDTOCheckout>> getBooksToCheckoutByIsbn(@PathVariable String isbn) {
         try {
             List<BookDTOCheckout> books = bookService.findBookDTOsCheckoutByIsbn(isbn);
-            return new ResponseEntity<>(books, HttpStatus.CREATED);
+            return new ResponseEntity<>(books, HttpStatus.OK);
         } catch (Exception e) {
             System.err.println(e.getMessage());
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -60,7 +60,7 @@ public class BookController {
     public ResponseEntity<List<BookDTOCheckin>> getBooksToCheckin(@PathVariable Long userId) {
         try {
             List<BookDTOCheckin> books = bookService.findBookDTOsCheckin(userId);
-            return new ResponseEntity<>(books, HttpStatus.CREATED);
+            return new ResponseEntity<>(books, HttpStatus.OK);
         } catch (Exception e) {
             System.err.println(e.getMessage());
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
